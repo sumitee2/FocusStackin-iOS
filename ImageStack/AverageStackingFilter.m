@@ -22,7 +22,7 @@
                 [NSException raise:@"Bundle error: path to kernel not found" format:@"Check build settings"];
             } else {
                 NSData *data = [NSData dataWithContentsOfURL:url];
-               _kernel = [CIBlendKernel kernelWithFunctionName:@"avgeeStacking" fromMetalLibraryData:data error: &error];
+               _kernel = [CIKernel kernelWithFunctionName:@"avgeeStacking" fromMetalLibraryData:data error: &error];
             }
         } @catch (NSError *error) {
               NSLog(@"%@ ", error.domain);
@@ -38,8 +38,11 @@
         
         NSArray *argmts = [NSArray arrayWithObjects:_inputCurrentStack, nil];
         
-        CIImage *op = [_kernel applyWithExtent:_inputCurrentStack.extent arguments: argmts];
+        CIKernelROICallback callback = ^(int index, CGRect rect) {
+            return rect;
+        };
         
+        CIImage *op = [_kernel applyWithExtent:_inputCurrentStack.extent roiCallback:callback arguments:argmts];
         return op;
     } else {
         return nil;

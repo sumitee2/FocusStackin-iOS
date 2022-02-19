@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AverageStackingFilter : CIFilter
 
-@property CIBlendKernel *kernel;
+@property CIKernel *kernel;
 @property CIImage *inputCurrentStack;
 @property CIImage *inputNewImage;
 @property float inputStackCount;
