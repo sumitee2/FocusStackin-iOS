@@ -14,6 +14,8 @@
 		199DAF9E27BEB98500D55AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 199DAF9D27BEB98500D55AC8 /* Assets.xcassets */; };
 		199DAFA127BEB98500D55AC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 199DAF9F27BEB98500D55AC8 /* LaunchScreen.storyboard */; };
 		199DAFA427BEB98500D55AC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DAFA327BEB98500D55AC8 /* main.m */; };
+		199DAFAC27BEC8A600D55AC8 /* AverageStacking.metal in Sources */ = {isa = PBXBuildFile; fileRef = 199DAFAB27BEC8A600D55AC8 /* AverageStacking.metal */; };
+		199DAFB027BEC96C00D55AC8 /* AverageStackingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DAFAF27BEC96C00D55AC8 /* AverageStackingFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		199DAFA027BEB98500D55AC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		199DAFA227BEB98500D55AC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		199DAFA327BEB98500D55AC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		199DAFAB27BEC8A600D55AC8 /* AverageStacking.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = AverageStacking.metal; sourceTree = "<group>"; };
+		199DAFAE27BEC96C00D55AC8 /* AverageStackingFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AverageStackingFilter.h; sourceTree = "<group>"; };
+		199DAFAF27BEC96C00D55AC8 /* AverageStackingFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AverageStackingFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,9 @@
 				199DAF9F27BEB98500D55AC8 /* LaunchScreen.storyboard */,
 				199DAFA227BEB98500D55AC8 /* Info.plist */,
 				199DAFA327BEB98500D55AC8 /* main.m */,
+				199DAFAB27BEC8A600D55AC8 /* AverageStacking.metal */,
+				199DAFAE27BEC96C00D55AC8 /* AverageStackingFilter.h */,
+				199DAFAF27BEC96C00D55AC8 /* AverageStackingFilter.m */,
 			);
 			path = ImageStack;
 			sourceTree = "<group>";
@@ -148,7 +156,9 @@
 				199DAF9927BEB98300D55AC8 /* ViewController.m in Sources */,
 				199DAF9327BEB98300D55AC8 /* AppDelegate.m in Sources */,
 				199DAFA427BEB98500D55AC8 /* main.m in Sources */,
+				199DAFB027BEC96C00D55AC8 /* AverageStackingFilter.m in Sources */,
 				199DAF9627BEB98300D55AC8 /* SceneDelegate.m in Sources */,
+				199DAFAC27BEC8A600D55AC8 /* AverageStacking.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +308,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTLLINKER_FLAGS = "-cikernel";
+				MTL_COMPILER_FLAGS = "-fcikernel";
+				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sumit.ImageStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -316,6 +329,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTLLINKER_FLAGS = "-cikernel";
+				MTL_COMPILER_FLAGS = "-fcikernel";
+				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sumit.ImageStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
