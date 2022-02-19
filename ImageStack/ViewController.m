@@ -75,24 +75,39 @@
 
 - (CIImage *) stackImages: (NSMutableArray *)alignedArray {
     
-    AverageStackingFilter *filter = [[AverageStackingFilter alloc] init];
+    AverageStackingFilter *filter = [[AverageStackingFilter alloc] initWithFname:@"gaussianImage"];
+    filter.inputStackCount = 1;
+    AverageStackingFilter *filter2 = [[AverageStackingFilter alloc] initWithFname:@"lofGauss"];
+    filter2.inputStackCount = 1;
+    AverageStackingFilter *filter3 = [[AverageStackingFilter alloc] initWithFname:@"compareStacking"];
+    filter3.inputStackCount = -1;
+
     int i = 0;
     CIImage *finalImage;
-    filter.inputCurrentStack = [alignedArray firstObject];
-    filter.inputNewImage = [alignedArray firstObject];
-    finalImage = filter.outputImage;
     
-//    for (CIImage *image in alignedArray) {
-//        if (finalImage) {
-//            filter.inputCurrentStack = finalImage;
-//            filter.inputNewImage = image;
-//            filter.inputStackCount = i;
-//            finalImage = filter.outputImage;
-//        } else {
-//            finalImage = image;
-//        }
-//        ++i;
-//    }
+    for (CIImage *image in alignedArray) {
+        if (finalImage) {
+            filter.inputCurrentStack = finalImage;
+            filter2.inputCurrentStack = filter.outputImage;
+            CIImage * firstX = filter2.outputImage;
+            
+            filter.inputCurrentStack = image;
+            filter2.inputCurrentStack = filter.outputImage;
+            CIImage * secX = filter2.outputImage;
+            
+            filter3.inputCurrentStack = firstX;
+            filter3.inputNewImage = secX;
+            filter3.inputBase1 = finalImage;
+            filter3.inputBase2 = image;
+            
+            finalImage = filter3.outputImage;
+        } else {
+            finalImage = image;
+        }
+        ++i;
+    }
+    
+    
     return finalImage;
 }
 

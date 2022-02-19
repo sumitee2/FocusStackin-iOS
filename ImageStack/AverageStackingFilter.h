@@ -14,8 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property CIKernel *kernel;
 @property CIImage *inputCurrentStack;
 @property CIImage *inputNewImage;
+@property CIImage *inputBase1;
+@property CIImage *inputBase2;
+
 @property float inputStackCount;
 
+- (instancetype)initWithFname: (NSString *)filtername;
 
 @end
 

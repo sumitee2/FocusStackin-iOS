@@ -11,7 +11,7 @@
 
 @synthesize inputStackCount;
 
-- (instancetype)init {
+- (instancetype)initWithFname: (NSString *)filtername {
     self = [super init];
     self.inputStackCount = 5;
     if (self) {
@@ -22,7 +22,7 @@
                 [NSException raise:@"Bundle error: path to kernel not found" format:@"Check build settings"];
             } else {
                 NSData *data = [NSData dataWithContentsOfURL:url];
-               _kernel = [CIKernel kernelWithFunctionName:@"avgeeStacking" fromMetalLibraryData:data error: &error];
+               _kernel = [CIKernel kernelWithFunctionName: filtername fromMetalLibraryData:data error: &error];
             }
         } @catch (NSError *error) {
               NSLog(@"%@ ", error.domain);
@@ -34,7 +34,18 @@
 }
 
 - (CIImage *) outputImage {
-    if (_inputCurrentStack && _inputNewImage) {
+    if (inputStackCount == -1) { //WHEN COMPARING
+        NSArray *argmts = [NSArray arrayWithObjects:_inputCurrentStack, _inputNewImage, _inputBase1, _inputBase2, nil];
+        
+        CIKernelROICallback callback = ^(int index, CGRect rect) {
+            return rect;
+        };
+        
+        CIImage *op = [_kernel applyWithExtent:_inputCurrentStack.extent roiCallback:callback arguments:argmts];
+        return op;
+    }
+    
+    if (_inputCurrentStack) {
         
         NSArray *argmts = [NSArray arrayWithObjects:_inputCurrentStack, nil];
         
