@@ -60,15 +60,4 @@
     }
 }
 
-//if (_inputCurrentStack && _inputNewImage) {
-//    
-//    NSArray *argmts = [NSArray arrayWithObjects:_inputCurrentStack, _inputNewImage, [NSNumber numberWithFloat:inputStackCount], nil];
-//    
-//    CIImage *op = [_kernel applyWithExtent:_inputCurrentStack.extent arguments: argmts];
-//    
-//    return op;
-//} else {
-//    return nil;
-//}
-
 @end

@@ -9,8 +9,6 @@
 using namespace metal;
 #include <CoreImage/CoreImage.h>
 
-//float3x3 area = float3x3(
-
 extern "C" { namespace coreimage {
   // 1
   float4 compareStacking(sample_t firstX, sample_t secX, sample_t firstBase, sample_t secBase) {
@@ -23,30 +21,6 @@ extern "C" { namespace coreimage {
   }
     
     float4 gaussianImage(sampler src) {
-      // 2
-        
-//        float gaussianArr[][5] = {{0.00296902,    0.0133062,    0.0219382,    0.0133062,    0.00296902},
-//            {0.0133062,    0.0596343,    0.0983203,    0.0596343,    0.0133062},
-//            {0.0219382,    0.0983203,    0.162103,    0.0983203,    0.0219382},
-//            {0.0133062,    0.0596343,    0.0983203,    0.0596343,    0.0133062},
-//            {0.00296902,    0.0133062,    0.0219382,    0.0133062,    0.00296902}};
-        
-//        float gaussianArr[][3] = {{1.0,    2.0,    1.0},
-//            {2.0,    4.0,    2.0},
-//            {1.0,    2.0,    1.0}
-//           };
-//        //
-//        float2 pos = src.coord();
-//        float4 pixelColor = src.sample(pos);
-//        float3 gaussianWeight = 0;
-//
-//        for(int i = -1; i < 2; i++ ) {
-//            for(int j = -1; j < 2; j++) {
-//                float2 a1 = src.transform(pos + float2(i*1.0,j*1.0));
-//                float3 a1c = src.sample(a1).rgb;
-//                gaussianWeight = gaussianWeight + (a1c * (gaussianArr[i+2][j+2]));
-//            }
-//        }
         
         float2 pos = src.coord();
         float4 pixelColor = src.sample(pos);
@@ -146,8 +120,6 @@ extern "C" { namespace coreimage {
                            + 0.0133062 * e4c
                            + 0.00296902 * e5c
                            );
-//        float3 gaussian = (a1c + (2 * a2c) + a3c + (2*b1c) + (2 * b2c) + c1c + (2 * c2c) + c3c + (4 * pixelRGB)) / 16;
-//
         return float4(gaussian, 1.0);
     }
     
@@ -252,21 +224,8 @@ extern "C" { namespace coreimage {
                            + 0 * e4c
                            + 0 * e5c
                            );
-//        float3 gaussian = (a1c + (2 * a2c) + a3c + (2*b1c) + (2 * b2c) + c1c + (2 * c2c) + c3c + (4 * pixelRGB)) / 16;
-//
         return float4(gaussian, 1.0);
     }
-    
-//    float4 testStacking(sampler src) {
-//        // 2
-//        float2 pos = src.coord();
-//        float4 pixelColor = src.sample(pos);
-//        // (4)
-//        float3 pixelRGB = pixelColor.rgb;
-//
-//        return pixelColor;//float4(1.1,0.1,0.1,1.0);
-//
-//    }
 }
 }
 
