@@ -27,13 +27,8 @@
 }
 
 - (NSMutableArray *) readImages {
-    return [NSMutableArray arrayWithObjects:[UIImage imageNamed:@"pcb_001"],
-            [UIImage imageNamed:@"pcb_002"],
-            [UIImage imageNamed:@"pcb_003"],
-            [UIImage imageNamed:@"pcb_004"],
-            [UIImage imageNamed:@"pcb_005"],
-            [UIImage imageNamed:@"pcb_006"],
-            [UIImage imageNamed:@"pcb_007"],
+    return [NSMutableArray arrayWithObjects:[UIImage imageNamed:@"IMG-188"],
+            [UIImage imageNamed:@"IMG-189"],
             nil];
 }
 
@@ -107,7 +102,7 @@
         ++i;
     }
     
-    
+    //filter.inputCurrentStack = finalImage;
     return finalImage;
 }
 

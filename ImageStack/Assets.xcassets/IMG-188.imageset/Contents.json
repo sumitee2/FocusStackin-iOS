@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "pcb_004.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,6 +9,7 @@
       "scale" : "2x"
     },
     {
+      "filename" : "IMG-188.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
