@@ -20,9 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSMutableArray *images = [self readImages];
-    NSMutableArray *aligned = [self alignImages:images];
-    CIImage *final = [self stackImages:aligned];
-    UIImage *displayImage = [UIImage imageWithCIImage:final];
+    UIImage *displayImage = [self focusStackImages:images];
     _photoView.image = displayImage;
 }
 
@@ -30,6 +28,12 @@
     return [NSMutableArray arrayWithObjects:[UIImage imageNamed:@"IMG-188"],
             [UIImage imageNamed:@"IMG-189"],
             nil];
+}
+
+- (UIImage *) focusStackImages: (NSMutableArray *) images {
+    NSMutableArray *aligned = [self alignImages:images];
+    CIImage *final = [self stackImages:aligned];
+    return [UIImage imageWithCIImage:final];
 }
 
 - (NSMutableArray *) alignImages: (NSMutableArray *)imageArray {
